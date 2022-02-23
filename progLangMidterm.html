@@ -1,175 +1,228 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" href="sheet.css"/>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="sheet.css" />
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
 </head>
 
 <body>
-    
-<label>Enter your code: </label>
-<input id="codeInput" type="text" />
 
-<button onclick="RunBottomUp()">Run</button>
-<br>
-<br>
-
-<table>
-    <th>id</th>
-    <th>+</th>
-    <th>*</th>
-    <th>(</th>
-    <th>)</th>
-    <th>$</th>
-    <th>E</th>
-    <th>T</th>
-    <th>F</th>
-    <!-- Row 0 -->
-    <tr>
-        <td id="state0charid">S5</td>
-        <td id="state0char+"></td>
-        <td id="state0char*"></td>
-        <td id="state0char(">S4</td>
-        <td id="state0char)"></td>
-        <td id="state0char$"></td>
-        <td id="state0charE">1</td>
-        <td id="state0charT">2</td>
-        <td id="state0charF">3</td>
-    </tr>
-    <!-- Row 1 -->
-    <tr>
-        <td id="state1charid"></td>
-        <td id="state1char+">S6</td>
-        <td id="state1char*"></td>
-        <td id="state1char("></td>
-        <td id="state1char)"></td>
-        <td id="state1char$">accept</td>
-        <td id="state1charE"></td>
-        <td id="state1charT"></td>
-        <td id="state1charF"></td>
-    </tr>
-    <!-- Row 2 -->
-    <tr>
-        <td id="state2charid"></td>
-        <td id="state2char+">R2</td>
-        <td id="state2char*">S7</td>
-        <td id="state2char("></td>
-        <td id="state2char)">R2</td>
-        <td id="state2char$">R2</td>
-        <td id="state2charE"></td>
-        <td id="state2charT"></td>
-        <td id="state2charF"></td>
-    </tr>
-    <!-- Row 3 -->
-    <tr>
-        <td id="state3charid"></td>
-        <td id="state3char+">R4</td>
-        <td id="state3char*">R4</td>
-        <td id="state3char("></td>
-        <td id="state3char)">R4</td>
-        <td id="state3char$">R4</td>
-        <td id="state3charE"></td>
-        <td id="state3charT"></td>
-        <td id="state3charF"></td>
-    </tr>
-    <!-- Row 4 -->
-    <tr>
-        <td id="state4charid">S5</td>
-        <td id="state4char+"></td>
-        <td id="state4char*>"</td>
-        <td id="state4char(">S4</td>
-        <td id="state4char)"></td>
-        <td id="state4char$"></td>
-        <td id="state4charE">8</td>
-        <td id="state4charT">2</td>
-        <td id="state4charF">3</td>
-    </tr>
-    <!-- Row 5 -->
-    <tr>
-        <td id="state5charid"></td>
-        <td id="state5char+">R6</td>
-        <td id="state5char*">R6</td>
-        <td id="state5char("></td>
-        <td id="state5char)">R6</td>
-        <td id="state5char$">R6</td>
-        <td id="state5charE"></td>
-        <td id="state5charT"></td>
-        <td id="state5charF"></td>
-    </tr>
-    <!-- Row 6 -->
-    <tr>
-        <td id="state6charid">S5</td>
-        <td id="state6char+"></td>
-        <td id="state6char*"></td>
-        <td id="state6char(">S4</td>
-        <td id="state6char)"></td>
-        <td id="state6char$"></td>
-        <td id="state6charE"></td>
-        <td id="state6charT">9</td>
-        <td id="state6charF">3</td>
-    </tr>
-    <!-- Row 7 -->
-    <tr>
-        <td id="state7charid">S5</td>
-        <td id="state7char+"></td>
-        <td id="state7char*"></td>
-        <td id="state7char(">S4</td>
-        <td id="state7char)"></td>
-        <td id="state7char$"></td>
-        <td id="state7charE"></td>
-        <td id="state7charT"></td>
-        <td id="state7charF">10</td>
-    </tr>
-    <!-- Row 8 -->
-    <tr>
-        <td id="state8charid"></td>
-        <td id="state8char+">S6</td>
-        <td id="state8char*"></td>
-        <td id="state8char("></td>
-        <td id="state8char)">S11</td>
-        <td id="state8char$"></td>
-        <td id="state8charE"></td>
-        <td id="state8charT"></td>
-        <td id="state8charF"></td>
-    </tr>
-    <!-- Row 9 -->
-    <tr>
-        <td id="state9charid"></td>
-        <td id="state9char+">R1</td>
-        <td id="state9char*">S7</td>
-        <td id="state9char("></td>
-        <td id="state9char)">R1</td>
-        <td id="state9char$">R1</td>
-        <td id="state9charE"></td>
-        <td id="state9charT"></td>
-        <td id="state9charF"></td>
-    </tr>
-    <!-- Row 10 -->
-    <tr>
-        <td id="state10charid"></td>
-        <td id="state10char+">R3</td>
-        <td id="state10char*">R3</td>
-        <td id="state10char("></td>
-        <td id="state10char)">R3</td>
-        <td id="state10char$">R3</td>
-        <td id="state10charE"></td>
-        <td id="state10charT"></td>
-        <td id="state10charF"></td>
-    </tr>
-    <!-- Row 11 -->
-    <tr>
-        <td id="state11charid">R5</td>
-        <td id="state11char+">R5</td>
-        <td id="state11char*"></td>
-        <td id="state11char(">R5</td>
-        <td id="state11char)">R5</td>
-        <td id="state11charE"></td>
-        <td id="state11charT"></td>
-        <td id="state11charT"></td>
-    </tr>
-</table>
-
+    <label>Enter your code: </label>
+    <input id="codeInput" type="text" />
+    <button id="run" onclick="RunBottomUp()">Run</button>
+    <br>
+    <span id="errorText" style="color: red;"></span>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <table>
+                    <th>state</th>
+                    <th>id</th>
+                    <th>+</th>
+                    <th>*</th>
+                    <th>(</th>
+                    <th>)</th>
+                    <th>$</th>
+                    <th></th>
+                    <th>E</th>
+                    <th>T</th>
+                    <th>F</th>
+                    <!-- Row 0 -->
+                    <tr>
+                        <td class="stateColumn">0</td>
+                        <td id="state0charid">S5</td>
+                        <td id="state0char+"></td>
+                        <td id="state0char*"></td>
+                        <td id="state0char(">S4</td>
+                        <td id="state0char)"></td>
+                        <td id="state0char$"></td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state0charE">1</td>
+                        <td id="state0charT">2</td>
+                        <td id="state0charF">3</td>
+                    </tr>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td class="stateColumn">1</td>
+                        <td id="state1charid"></td>
+                        <td id="state1char+">S6</td>
+                        <td id="state1char*"></td>
+                        <td id="state1char("></td>
+                        <td id="state1char)"></td>
+                        <td id="state1char$">accept</td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state1charE"></td>
+                        <td id="state1charT"></td>
+                        <td id="state1charF"></td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr>
+                        <td class="stateColumn">2</td>
+                        <td id="state2charid"></td>
+                        <td id="state2char+">R2</td>
+                        <td id="state2char*">S7</td>
+                        <td id="state2char("></td>
+                        <td id="state2char)">R2</td>
+                        <td id="state2char$">R2</td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state2charE"></td>
+                        <td id="state2charT"></td>
+                        <td id="state2charF"></td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                        <td class="stateColumn">3</td>
+                        <td id="state3charid"></td>
+                        <td id="state3char+">R4</td>
+                        <td id="state3char*">R4</td>
+                        <td id="state3char("></td>
+                        <td id="state3char)">R4</td>
+                        <td id="state3char$">R4</td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state3charE"></td>
+                        <td id="state3charT"></td>
+                        <td id="state3charF"></td>
+                    </tr>
+                    <!-- Row 4 -->
+                    <tr>
+                        <td class="stateColumn">4</td>
+                        <td id="state4charid">S5</td>
+                        <td id="state4char+"></td>
+                        <td id="state4char*>" </td>
+                        <td id="state4char(">S4</td>
+                        <td id="state4char)"></td>
+                        <td id="state4char$"></td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state4charE">8</td>
+                        <td id="state4charT">2</td>
+                        <td id="state4charF">3</td>
+                    </tr>
+                    <!-- Row 5 -->
+                    <tr>
+                        <td class="stateColumn">5</td>
+                        <td id="state5charid"></td>
+                        <td id="state5char+">R6</td>
+                        <td id="state5char*">R6</td>
+                        <td id="state5char("></td>
+                        <td id="state5char)">R6</td>
+                        <td id="state5char$">R6</td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state5charE"></td>
+                        <td id="state5charT"></td>
+                        <td id="state5charF"></td>
+                    </tr>
+                    <!-- Row 6 -->
+                    <tr>
+                        <td class="stateColumn">6</td>
+                        <td id="state6charid">S5</td>
+                        <td id="state6char+"></td>
+                        <td id="state6char*"></td>
+                        <td id="state6char(">S4</td>
+                        <td id="state6char)"></td>
+                        <td id="state6char$"></td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state6charE"></td>
+                        <td id="state6charT">9</td>
+                        <td id="state6charF">3</td>
+                    </tr>
+                    <!-- Row 7 -->
+                    <tr>
+                        <td class="stateColumn">7</td>
+                        <td id="state7charid">S5</td>
+                        <td id="state7char+"></td>
+                        <td id="state7char*"></td>
+                        <td id="state7char(">S4</td>
+                        <td id="state7char)"></td>
+                        <td id="state7char$"></td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state7charE"></td>
+                        <td id="state7charT"></td>
+                        <td id="state7charF">10</td>
+                    </tr>
+                    <!-- Row 8 -->
+                    <tr>
+                        <td class="stateColumn">8</td>
+                        <td id="state8charid"></td>
+                        <td id="state8char+">S6</td>
+                        <td id="state8char*"></td>
+                        <td id="state8char("></td>
+                        <td id="state8char)">S11</td>
+                        <td id="state8char$"></td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state8charE"></td>
+                        <td id="state8charT"></td>
+                        <td id="state8charF"></td>
+                    </tr>
+                    <!-- Row 9 -->
+                    <tr>
+                        <td class="stateColumn">9</td>
+                        <td id="state9charid"></td>
+                        <td id="state9char+">R1</td>
+                        <td id="state9char*">S7</td>
+                        <td id="state9char("></td>
+                        <td id="state9char)">R1</td>
+                        <td id="state9char$">R1</td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state9charE"></td>
+                        <td id="state9charT"></td>
+                        <td id="state9charF"></td>
+                    </tr>
+                    <!-- Row 10 -->
+                    <tr>
+                        <td class="stateColumn">10</td>
+                        <td id="state10charid"></td>
+                        <td id="state10char+">R3</td>
+                        <td id="state10char*">R3</td>
+                        <td id="state10char("></td>
+                        <td id="state10char)">R3</td>
+                        <td id="state10char$">R3</td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state10charE"></td>
+                        <td id="state10charT"></td>
+                        <td id="state10charF"></td>
+                    </tr>
+                    <!-- Row 11 -->
+                    <tr>
+                        <td class="stateColumn">11</td>
+                        <td id="state11charid">R5</td>
+                        <td id="state11char+">R5</td>
+                        <td id="state11char*"></td>
+                        <td id="state11char(">R5</td>
+                        <td id="state11char)">R5</td>
+                        <td class="seperatorColumn"></td>
+                        <td id="state11charE"></td>
+                        <td id="state11charT"></td>
+                        <td id="state11charT"></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="actions" class="col-md-4">
+                <h2>Actions:</h2>
+            </div>
+            <div id="prodRules" class="col-md-4">
+                <h2>Production Rules:</h2>
+            </div>
+            <div id="derSteps" class="col-md-4">
+                <h2>Derivation Steps:</h2>
+            </div>
+            <div id="stackTrace" class="col-md-4">
+                <h2>Stack:</h2>
+                <div>0</div>
+            </div>
+            <div id="stepsDone" class="col-md-4">
+                <h2>Steps Done:</h2>
+            </div>
+        </div>
+    </div>
 </body>
 <html>

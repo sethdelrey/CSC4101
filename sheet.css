@@ -11,3 +11,16 @@ td {
     height: 25px;
     text-align: center;
 }
+
+th {
+    background-color: lightgrey;
+}
+
+.stateColumn {
+    background-color: lightgrey;
+    width: 10px;
+}
+
+td.seperatorColumn {
+    width: 10px !important;
+}
