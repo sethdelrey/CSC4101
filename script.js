@@ -36,12 +36,10 @@ function RunBottomUp() {
     } else {
         $('#errorText').text("");
     }
-    console.log(input);
     input = input.replaceAll(" ", "");
     derStep = input;
     AddToDerSteps();
     var charArray = input.split('');
-    console.log(charArray);
     let token = "";
     let column = 0;
     let tableData = "";
@@ -53,8 +51,6 @@ function RunBottomUp() {
             i++;
             token += charArray[i];
         }
-
-        console.log("TOKEN: " + token);
         column = GetNumberFromToken(token);
         tableData = parseTable[state][column];
     
@@ -67,10 +63,7 @@ function RunBottomUp() {
 
 function ColorTableData(state, character, color) {
     var id = "#state" + state + "char" + EditIfSpecialCharacter(character);
-    //console.log(id);
     $(id).css("background-color",color);
-    // sleep(1000);
-    // $(id).css("background-color","white");
 }
 
 function ParseTableData(tableData, token, gotoValue) {
@@ -80,11 +73,9 @@ function ParseTableData(tableData, token, gotoValue) {
     }
     
     if (gotoValue != null) {
-        console.log("STATE color section IF: " + state);
         ColorTableData(state, gotoValue, color);
     }
     else {
-        console.log("STATE color section ELSE: " + state);
         ColorTableData(state, token, color);
     }
 
@@ -102,7 +93,6 @@ function ParseTableData(tableData, token, gotoValue) {
         AddToStepsDone("Shift Input. Go to state " + stateText);
         state = parseInt(stateText);
         StackPush(state);
-        console.log("STACK: " + stack);
     }
     else if (tdArray[0] == 'R') {
         // Reduce using the 
@@ -118,13 +108,10 @@ function ParseTableData(tableData, token, gotoValue) {
         console.log("FINISHED");
     }
     else if (Number(tdArray[0]) != NaN) {
-        console.log("GOTO");
-        console.log(tdArray);
         var stateText = ""
         for (let i = 0; i < tdArray.length; i++) {
             stateText += tdArray[i];
         }
-        console.log("STATETEXT: " + stateText);
         state = parseInt(stateText);
 
         StackPush(state);
@@ -136,10 +123,8 @@ function ParseTableData(tableData, token, gotoValue) {
 }
 
 function Reduce(rule, token) {
-    //console.log(stack);
     // Pop the state off the stack
     state = StackPop();
-    console.log("RULE: " + rule);
     switch (rule) {
         // E -> E + T
         case 1:
@@ -185,7 +170,6 @@ function Reduce(rule, token) {
             StackPop();
             var peek = stack[stack.length-1];
             StackPush("T");
-            console.log("PEEK: " + peek);
             state = peek;
             derStep = derStep.replace("F", "T");
             AddToDerSteps();
@@ -215,7 +199,6 @@ function Reduce(rule, token) {
             StackPop();
             var peek = stack[stack.length-1];
             StackPush("F");
-            console.log("PEEK: " + peek);
             state = peek;
             derStep = derStep.replace("id", "F");
             AddToDerSteps();
