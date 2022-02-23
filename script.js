@@ -3,6 +3,8 @@ let state = 0;
 
 let stack = [0];
 
+let queue = new Array();
+
 let derStep = "";
 
 const parseTable = [
@@ -56,19 +58,34 @@ function RunBottomUp() {
 
     }
     
+    var count = 0;
+
+    var nIntervalId = setInterval(() => {
+        if (count >= queue.length) {
+            clearInterval(nIntervalId);
+        }
+        let stateIN = queue[count].state;
+        let characterIN = queue[count].character;
+        let colorIN = queue[count].color;
+
+        var id = "#state" + stateIN + "char" + EditIfSpecialCharacter(characterIN);
+        console.log(id);
+        $(id).css("background-color", colorIN);
+        count = (count + 1);
+        }, 100
+    );
+
+    
 }
 
-function ColorTableData(state, character, color) {
 
-    var id = "#state" + state + "char" + EditIfSpecialCharacter(character);
-    if ($(id).css("background-color") == "rgb(0, 128, 0)") {
-        $(id).css("background-color", "yellow");
-    }
-    else if ($(id).css("background-color") == "rgba(0, 0, 0, 0)") {
-        $(id).css("background-color",color);
-    }
-    else if ($(id).css("background-color") == "rgb(255,255,0)") {
-        $(id).css("background-color","blue");
+function ColorTableData(state, character, color) {
+    
+    queue.push({state, character, color});
+    var bl = state == 1 && character == "$";
+    if (!(color == "red" || (bl))) {
+        color = "white";
+        queue.push({state, character, color});
     }
 }
 
