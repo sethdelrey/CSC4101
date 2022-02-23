@@ -1,4 +1,4 @@
-//$('document').ready(ColorTableData(5, '*'));
+//$('document').ready(() => ($('#reset').hide()));
 let state = 0;
 
 let stack = [0];
@@ -22,11 +22,8 @@ const parseTable = [
 
 const stackTrace = $("#stackTrace");
 
-function Clear() {
-    stack = [0];
-    state = 0;
-    $("td").css("background-color", "white");
-
+function Reset() {
+    window.location.reload();
 }
 
 function RunBottomUp() {
@@ -62,8 +59,17 @@ function RunBottomUp() {
 }
 
 function ColorTableData(state, character, color) {
+
     var id = "#state" + state + "char" + EditIfSpecialCharacter(character);
-    $(id).css("background-color",color);
+    if ($(id).css("background-color") == "rgb(0, 128, 0)") {
+        $(id).css("background-color", "yellow");
+    }
+    else if ($(id).css("background-color") == "rgba(0, 0, 0, 0)") {
+        $(id).css("background-color",color);
+    }
+    else if ($(id).css("background-color") == "rgb(255,255,0)") {
+        $(id).css("background-color","blue");
+    }
 }
 
 function ParseTableData(tableData, token, gotoValue) {
@@ -105,6 +111,8 @@ function ParseTableData(tableData, token, gotoValue) {
         Reduce(parseInt(ruleText), token);
     }
     else if (tableData == "accept") {
+        $('#reset').show();
+        $('#successText').text("The parsing has finished!");
         console.log("FINISHED");
     }
     else if (Number(tdArray[0]) != NaN) {
@@ -292,11 +300,14 @@ function GetNumberFromToken(token) {
     return num;
 }
 
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-  }
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
+  function syncDelay(milliseconds){
+    var start = new Date().getTime();
+    var end=0;
+    while( (end-start) < milliseconds){
+        end = new Date().getTime();
+    }
+   }
