@@ -210,21 +210,44 @@
                     </tr>
                 </table>
             </div>
+            <div class="col-md-4">
+                <h2>Production Rules: </h2>
+                <ol>
+                    <li>
+                        E -> E + T
+                    </li>
+                    <li>
+                        E -> T
+                    </li>
+                    <li>
+                        T -> T * F
+                    </li>
+                    <li>
+                        T -> F
+                    </li>
+                    <li>
+                        F -> (E)
+                    </li>
+                    <li>
+                        F -> id
+                    </li>
+                </ol>
+            </div>
             <div id="actions" class="col-md-4">
                 <h2>Actions:</h2>
             </div>
             <div id="prodRules" class="col-md-4">
-                <h2>Production Rules:</h2>
+                <h2>Production Rules Used:</h2>
             </div>
             <div id="derSteps" class="col-md-4">
                 <h2>Derivation Steps:</h2>
             </div>
+            <div id="stepsDone" class="col-md-4">
+                <h2>Steps Done:</h2>
+            </div>
             <div id="stackTrace" class="col-md-4">
                 <h2>Stack:</h2>
                 <div>0</div>
-            </div>
-            <div id="stepsDone" class="col-md-4">
-                <h2>Steps Done:</h2>
             </div>
         </div>
     </div>

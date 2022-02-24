@@ -36,6 +36,11 @@ function RunBottomUp() {
         $('#errorText').text("");
     }
     input = input.replaceAll(" ", "");
+
+    if (input[input.length - 1] != "$") {
+        input += "$";
+    }
+
     derStep = input;
     AddToDerSteps();
     var charArray = input.split('');
@@ -58,10 +63,16 @@ function RunBottomUp() {
 
     }
     
+    evalTableColor();
+
+    
+}
+
+function evalTableColor() {
     var count = 0;
 
     var nIntervalId = setInterval(() => {
-        if (count >= queue.length) {
+        if (count >= queue.length - 1) {
             clearInterval(nIntervalId);
         }
         let stateIN = queue[count].state;
@@ -72,12 +83,9 @@ function RunBottomUp() {
         console.log(id);
         $(id).css("background-color", colorIN);
         count = (count + 1);
-        }, 100
+        }, 250
     );
-
-    
 }
-
 
 function ColorTableData(state, character, color) {
     
@@ -137,13 +145,24 @@ function ParseTableData(tableData, token, gotoValue) {
         for (let i = 0; i < tdArray.length; i++) {
             stateText += tdArray[i];
         }
-        state = parseInt(stateText);
+        var temp = parseInt(stateText);
+        if (!Number.isNaN(temp)) {
+            state = temp;
+            StackPush(state);
+            ParseTableData(parseTable[state][GetNumberFromToken(token)], token);
+        }
+        else {
+            throwError();
+            //setTimeout(() => (alert("An error has orrured!")), 1000);
+            
+        }
+        
 
-        StackPush(state);
-        ParseTableData(parseTable[state][GetNumberFromToken(token)], token);
+        
     }
     else {
         // Throw an error
+        throwError();
     }
 }
 
@@ -317,14 +336,7 @@ function GetNumberFromToken(token) {
     return num;
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+function throwError() {
+    evalTableColor();
+    $('#errorText').text("A parsing error has occured");
 }
-
-  function syncDelay(milliseconds){
-    var start = new Date().getTime();
-    var end=0;
-    while( (end-start) < milliseconds){
-        end = new Date().getTime();
-    }
-   }
