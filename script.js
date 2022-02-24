@@ -29,6 +29,9 @@ function Reset() {
 }
 
 function RunBottomUp() {
+    $('#reset').hide();
+    $("#errorText").hide();
+    $("#successText").hide();
     var input = $("#codeInput").val();
     if (input == "") {
         $('#errorText').text("You need to enter a value you parse.");
@@ -65,7 +68,7 @@ function RunBottomUp() {
     
     evalTableColor();
 
-    
+    $('#reset').show();
 }
 
 function evalTableColor() {
@@ -136,7 +139,7 @@ function ParseTableData(tableData, token, gotoValue) {
         Reduce(parseInt(ruleText), token);
     }
     else if (tableData == "accept") {
-        $('#reset').show();
+        
         $('#successText').text("The parsing has finished!");
         console.log("FINISHED");
     }
