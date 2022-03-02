@@ -24,3 +24,7 @@ th {
 td.seperatorColumn {
     width: 10px !important;
 }
+
+.card {
+    margin-top: 10px;
+} 

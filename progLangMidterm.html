@@ -211,44 +211,90 @@
                 </table>
             </div>
             <div class="col-md-4">
-                <h2>Production Rules: </h2>
-                <ol>
-                    <li>
-                        E -> E + T
-                    </li>
-                    <li>
-                        E -> T
-                    </li>
-                    <li>
-                        T -> T * F
-                    </li>
-                    <li>
-                        T -> F
-                    </li>
-                    <li>
-                        F -> (E)
-                    </li>
-                    <li>
-                        F -> id
-                    </li>
-                </ol>
+                <div class="card">
+                    <div class="card-header">
+                        Derivation Steps
+                    </div>
+                    <div id="derSteps" class="card-body">
+
+                    </div>
+                </div>
             </div>
-            <div id="actions" class="col-md-4">
-                <h2>Actions:</h2>
+            <div  class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Stack
+                    </div>
+                    <div class="card-body">
+                        <ul id="stackTrace" style="height: 300px; overflow: hidden; overflow-y: scroll;">
+                            <li>0</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div id="prodRules" class="col-md-4">
-                <h2>Production Rules Used:</h2>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Actions
+                    </div>
+                    <div id="actions" class="card-body">
+
+                    </div>
+                </div>
             </div>
-            <div id="derSteps" class="col-md-4">
-                <h2>Derivation Steps:</h2>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Production Rules
+                    </div>
+                    <div class="card-body">
+                        <ol>
+                            <li>
+                                E -> E + T
+                            </li>
+                            <li>
+                                E -> T
+                            </li>
+                            <li>
+                                T -> T * F
+                            </li>
+                            <li>
+                                T -> F
+                            </li>
+                            <li>
+                                F -> (E)
+                            </li>
+                            <li>
+                                F -> id
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                
+                
             </div>
-            <div id="stepsDone" class="col-md-4">
-                <h2>Steps Done:</h2>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Production Rules Used
+                    </div>
+                    <div id="prodRules" class="card-body">
+
+                    </div>
+                </div>
             </div>
-            <div id="stackTrace" class="col-md-4">
-                <h2>Stack:</h2>
-                <div>0</div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Steps Done
+                    </div>
+                    <div id="stepsDone" class="card-body">
+
+                    </div>
+                </div>
             </div>
+            
         </div>
     </div>
 </body>

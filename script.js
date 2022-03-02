@@ -5,6 +5,8 @@ let stack = [0];
 
 let queue = new Array();
 
+let errorFlag = false;
+
 let derStep = "";
 
 const parseTable = [
@@ -32,9 +34,17 @@ function RunBottomUp() {
     $('#reset').hide();
     $("#errorText").hide();
     $("#successText").hide();
+    ClearAllColors();
+    ClearAllDivs();
+    ClearAllVals();
+
+    StackPush(0);
+
     var input = $("#codeInput").val();
     if (input == "") {
         $('#errorText').text("You need to enter a value you parse.");
+        $("#errorText").show();
+        return;
     } else {
         $('#errorText').text("");
     }
@@ -63,6 +73,9 @@ function RunBottomUp() {
     
         ParseTableData(tableData, token, null);
 
+        if (errorFlag) {
+            return;
+        }
 
     }
     
@@ -88,6 +101,30 @@ function evalTableColor() {
         count = (count + 1);
         }, 250
     );
+}
+
+function ClearAllColors() {
+    var tds = $(".colorCanChange");
+
+    for (let i = 0; i < tds.length; i++) {
+        tds.eq(i).css("background-color", "white");
+    }
+}
+
+function ClearAllDivs() {
+    $("#stackTrace").empty();
+    $("#prodRules div").empty();
+    $("#derSteps div").empty();
+    $("#actions div").empty();
+    $("#stepsDone div").empty();
+}
+
+function ClearAllVals() {
+    stack = new Array();
+    queue = new Array();
+    state = 0;
+    errorFlag = false;
+    derStep = "";
 }
 
 function ColorTableData(state, character, color) {
@@ -141,6 +178,7 @@ function ParseTableData(tableData, token, gotoValue) {
     else if (tableData == "accept") {
         
         $('#successText').text("The parsing has finished!");
+        $('#successText').show();
         console.log("FINISHED");
     }
     else if (Number(tdArray[0]) != NaN) {
@@ -256,12 +294,12 @@ function Reduce(rule, token) {
 
 function StackPush(token) {
     stack.push(token);
-    $("#stackTrace").append('<div>' + stack.join('') + '</div>');
+    $("#stackTrace").append('<li>' + stack.join('') + '</li>');
 }
 
 function StackPop() {
     stack.pop();
-    $("#stackTrace").append('<div>' + stack.join('') + '</div>');
+    $("#stackTrace").append('<li>' + stack.join('') + '</li>');
 }
 
 function AddToAction(action) {
@@ -339,7 +377,12 @@ function GetNumberFromToken(token) {
     return num;
 }
 
-function throwError() {
+function throwError(message) {
     evalTableColor();
-    $('#errorText').text("A parsing error has occured");
+    if (message == null || message == "") {
+        message = "A parsing error has occured."
+    }
+    $('#errorText').text(message);
+    $('#errorText').show();
+    errorFlag = true;
 }
