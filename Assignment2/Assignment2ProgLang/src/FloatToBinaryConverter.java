@@ -53,11 +53,15 @@ public class FloatToBinaryConverter {
 	}
 	
 	private static String intToBinary(int num) {
-		// Save remainder when dividing by two and half the number
 		String result = "";
-		while (num != 0) {
-			result = num % 2 + result;    
-			num /= 2;
+		if (num == 0) {
+			result = "0";
+		} else {
+			// Save remainder when dividing by two and half the number
+			while (num != 0) {
+				result = num % 2 + result;    
+				num /= 2;
+			}
 		}
 		
 		return result;
