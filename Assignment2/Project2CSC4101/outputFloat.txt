@@ -1,0 +1,4 @@
+Original Value: -122.13313361, Converted Value: -122.13313, Error Percentage: 5.530274016507519E-7%
+Original Value: 77.566, Converted Value: 77.565994, Error Percentage: 7.396674694959415E-6%
+Original Value: 0.7756, Converted Value: 0.77559996, Error Percentage: 5.606955744141828E-6%
+Original Value: -0.00673, Converted Value: -0.0067299996, Error Percentage: 6.580423628221865E-6%
