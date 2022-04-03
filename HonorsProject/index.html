@@ -13,33 +13,44 @@
 </head>
 
 <body>
+    <h1 style="text-align: center;">Floating Point Converter</h1>
     <div class="container">
-        <div>
-            <label>Enter a floating point number: </label>
-            <input id="floatInput" type="text" />
-            <button id="run" onclick="RunConverters()">Run</button>
-            <button id="reset" onclick="Reset()" style="display: none;">Reset</button>
+        <div class="card card-primary">
+            <div class="card-header">
+                <h2>Input</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Enter a floating point number: </label>
+                    <input id="floatInput" type="text" />
+                </div>
+                <div class="form-group">
+                    <button id="run" onclick="RunConverters()">Run</button>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="card card-primary">
+            <div class="card-header">
+                <h2>Output</h2>
+            </div>
+            <div class="card-body">
+                <div>
+                    Original Number: <span id="originalNumber"></span>
+                </div>
+                <div>
+                    Binary Output: <span id="binaryOutput"></span>
+                </div>
+                <div>
+                    Float from Binary: <span id="floatFromBinary"></span>
+                </div>
+                <div>
+                    Error Percentage: <span id="errorPercentage"></span>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card card-primary">
-        <div class="card-header">
-            Output
-        </div>
-        <div class="card-body">
-            <div>
-                Original Number: <span id="originalNumber"></span>
-            </div>
-            <div>
-                Binary Output: <span id="binaryOutput"></span>
-            </div>
-            <div>
-                Float from Binary: <span id="floatFromBinary"></span>
-            </div>
-            <div>
-                Error Percentage: <span id="errorPercentage"></span>
-            </div>
-        </div>
-    </div>
+    
 </body>
 
 </html>
