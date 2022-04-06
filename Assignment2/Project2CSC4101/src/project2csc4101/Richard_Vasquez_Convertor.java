@@ -6,8 +6,7 @@ public class Convertor {
 
     private final static int NUM_EXPONENT_BITS = 8;
     private final static int NUM_FRACTION_BITS = 23;
-    private final static int NUM_SIGN_BITS = 1;
-
+    
     public static String IEEE754(double number) {
         var negativeBit = "0";
         var exponentAndMantissa = "";
